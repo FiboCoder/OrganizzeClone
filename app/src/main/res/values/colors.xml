@@ -16,4 +16,9 @@
     <color name="colorPrimaryReceitas">#00D39E</color>
     <color name="colorPrimaryDarkReceitas">#00BE8B</color>
     <color name="colorAccentReceitas">#00D39E</color>
+
+    <color name="green1">#13ca71</color>
+    <color name="green2">#93ffc8</color>
+    <color name="green3">#0f7641</color>
+    <color name="grey1">#9E9E9E</color>
 </resources>

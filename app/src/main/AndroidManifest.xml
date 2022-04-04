@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.organizze">
+
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -10,13 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Organizze">
         <activity
+            android:name="ativity.EditProfileActivity"
+            android:exported="false"
+            android:parentActivityName="ativity.MainScreenActivity"/>
+        <activity
             android:name="ativity.ReceitasActivity"
-            android:theme="@style/receitasTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/receitasTheme" />
         <activity
             android:name="ativity.DespesasActivity"
-            android:theme="@style/despesasTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/despesasTheme" />
         <activity
             android:name="ativity.MainScreenActivity"
             android:exported="false"

@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -47,9 +48,14 @@ import Config.FirebaseConfig;
 import Helper.Base64Custom;
 import Model.Movimentation;
 import Model.User;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainScreenActivity extends AppCompatActivity {
 
+    //Components
+
+    private CircleImageView civProfile;
+    private AppCompatTextView tvUsername;
     private TextView welcome, balance;
     private MaterialCalendarView cvMain;
     private RecyclerView moves;
@@ -74,10 +80,27 @@ public class MainScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+        initAndConfigComponents();
+
+    }
+
+    private void initAndConfigComponents(){
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Organizze");
         setSupportActionBar(toolbar);
 
+        civProfile = findViewById(R.id.civProfile);
+        civProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainScreenActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvUsername = findViewById(R.id.tvUserName);
         welcome = findViewById(R.id.tvWelcome);
         balance = findViewById(R.id.tvBalance);
         cvMain = findViewById(R.id.cvMain);

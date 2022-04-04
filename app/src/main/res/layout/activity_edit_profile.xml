@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ativity.EditProfileActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civEP"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/profile"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserNameMainEP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Nome"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChangeProfileImageEP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/btn_change_image"
+            android:text="Alterar Imagem"
+            android:textColor="@color/green3"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAllCaps="false"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llUsernameEP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="34dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/grey1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvUserNameEP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_baseline_person_grey"
+                android:drawablePadding="8dp"
+                android:hint="Nome"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llEmailEP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="34dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="E-mail"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/grey1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEmailEP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_baseline_email_24"
+                android:drawablePadding="8dp"
+                android:hint="E-mail"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llPassEP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="34dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Senha"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/grey1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPassEP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_baseline_lock_24"
+                android:drawablePadding="8dp"
+                android:hint="Senha"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:inputType="textPassword"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSaveChangesEP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/btn_save_changes"
+            android:text="Salvar Alterações"
+            android:textSize="18sp"
+            android:textColor="@color/grey1"
+            android:textAllCaps="false" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
