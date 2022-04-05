@@ -118,7 +118,7 @@ public class ReceitasActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 User user = snapshot.getValue(User.class);
-                totalRevenue = user.getReceitaTotal();
+                totalRevenue = user.getTotalRevenue();
             }
 
             @Override

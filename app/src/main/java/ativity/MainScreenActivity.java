@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.organizze.MainActivity;
-import com.example.organizze.databinding.ActivityMainScreenBinding;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,10 +18,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -252,13 +245,14 @@ public class MainScreenActivity extends AppCompatActivity {
 
                 User user = snapshot.getValue(User.class);
 
-                totalExpense = user.getDespesaTotal();
-                totalRevenue = user.getReceitaTotal();
+                totalExpense = user.getTotalExpense();
+                totalRevenue = user.getTotalRevenue();
                 valueResume = totalRevenue - totalExpense;
 
                 DecimalFormat decimalFormat = new DecimalFormat("0.##");
                 String formatedResult = decimalFormat.format(valueResume);
 
+                tvUsername.setText(user.getName());
                 welcome.setText("Olá, " + user.getName());
                 balance.setText("R$" + formatedResult);
             }

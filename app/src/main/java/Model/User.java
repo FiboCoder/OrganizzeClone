@@ -3,26 +3,60 @@ package Model;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import Config.FirebaseConfig;
+import Helper.Base64Custom;
 
 public class User {
 
     private String userID;
+    private String userIdToUpdate;
     private String name;
     private String email;
     private String password;
-    private Double receitaTotal = 0.00;
-    private Double despesaTotal = 0.00;
+    private Double totalRevenue = 0.00;
+    private Double totalExpense = 0.00;
+
+    private DatabaseReference reference = FirebaseConfig.getReference();
 
     public User() {
     }
 
     public void saveUser(){
 
-        DatabaseReference reference = FirebaseConfig.getReference();
+
         reference.child("Users")
                  .child(this.userID)
                  .setValue(this);
+    }
+
+    public void updateName(){
+
+        DatabaseReference nameRef = reference.child("Users").child(getUserID());
+        Map<String, Object> updateMap = new HashMap<>();
+        updateMap.put("name", getName());
+
+        nameRef.updateChildren(updateMap);
+    }
+
+    public void updateEmail(){
+
+        DatabaseReference userRef = reference.child("Users").child(getUserID());
+        userRef.removeValue();
+
+        String newId = Base64Custom.encode64Base(getEmail());
+
+        DatabaseReference userRefUpdate = reference.child("Users").child(newId);
+        Map<String, Object> updateMap = new HashMap<>();
+        updateMap.put("name", getName());
+        updateMap.put("email", getEmail());
+        updateMap.put("totalRevenue", getTotalRevenue());
+        updateMap.put("totalExpense", getTotalExpense());
+
+        userRefUpdate.setValue(updateMap);
+
     }
 
     @Exclude
@@ -32,6 +66,15 @@ public class User {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    @Exclude
+    public String getUserIdToUpdate() {
+        return userIdToUpdate;
+    }
+
+    public void setUserIdToUpdate(String userIdToUpdate) {
+        this.userIdToUpdate = userIdToUpdate;
     }
 
     public String getName() {
@@ -59,19 +102,19 @@ public class User {
         this.password = password;
     }
 
-    public Double getReceitaTotal() {
-        return receitaTotal;
+    public Double getTotalRevenue() {
+        return totalRevenue;
     }
 
-    public void setReceitaTotal(Double receitaTotal) {
-        this.receitaTotal = receitaTotal;
+    public void setTotalRevenue(Double totalRevenue) {
+        this.totalRevenue = totalRevenue;
     }
 
-    public Double getDespesaTotal() {
-        return despesaTotal;
+    public Double getTotalExpense() {
+        return totalExpense;
     }
 
-    public void setDespesaTotal(Double despesaTotal) {
-        this.despesaTotal = despesaTotal;
+    public void setTotalExpense(Double totalExpense) {
+        this.totalExpense = totalExpense;
     }
 }

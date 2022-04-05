@@ -7,16 +7,19 @@
 
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etCurrentPassDialogEP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Senha atual"/>
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etNewPassDialogEP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nova senha"/>
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etConfirmPassDialogEP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirmar nova senha"/>
