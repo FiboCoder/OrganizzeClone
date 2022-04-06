@@ -242,7 +242,56 @@ public class EditProfileActivity extends AppCompatActivity {
             user.updateName();
 
         }
-        if(etEmail != null){
+
+        if(etEmail != null && etCurrentPass != null && etNewPass != null && etConfirmPass != null){
+
+            firebaseUser.updateEmail(etEmail.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+
+                    user = new User();
+                    user.setUserID(userId);
+                    user.setName(tvUsername.getText().toString());
+                    user.setEmail(etEmail.getText().toString());
+                    user.setTotalRevenue(totalRevenue);
+                    user.setTotalExpense(totalExpense);
+                    user.updateEmail();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    showMessage("Erro ao alterar E-mail, tente novamente!" + e.getMessage());
+                }
+            });
+
+            String newPass = etNewPass.getText().toString();
+            String confirmPass = etNewPass.getText().toString();
+
+            if(newPass.equals(confirmPass)){
+
+                firebaseUser.updatePassword(newPass).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        auth.signOut();
+                        finish();
+                        startActivity(new Intent(EditProfileActivity.this, LoginActivity.class));
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        showMessage("Erro ao alterar senha, tente novamente!");
+                    }
+                });
+            }else{
+
+                showMessage("As senhas não conferem, digite a nova senha, confirme!");
+            }
+
+        }else if(etEmail != null && etCurrentPass == null && etNewPass == null && etConfirmPass == null){
 
             firebaseUser.updateEmail(etEmail.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -258,7 +307,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     auth.signOut();
                     finish();
                     startActivity(new Intent(EditProfileActivity.this, LoginActivity.class));
-
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -267,9 +315,9 @@ public class EditProfileActivity extends AppCompatActivity {
                     showMessage("Erro ao alterar E-mail, tente novamente!" + e.getMessage());
                 }
             });
-        }
 
-        if(etCurrentPass != null && etNewPass != null && etConfirmPass != null){
+
+        }else if(etEmail == null && etCurrentPass != null && etNewPass != null && etConfirmPass != null){
 
             String newPass = etNewPass.getText().toString();
             String confirmPass = etNewPass.getText().toString();
@@ -296,7 +344,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 showMessage("As senhas não conferem, digite a nova senha e confirme!");
             }
-
         }
     }
 
