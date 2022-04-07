@@ -1,5 +1,7 @@
 package Model;
 
+import android.net.Uri;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
@@ -12,7 +14,7 @@ import Helper.Base64Custom;
 public class User {
 
     private String userID;
-    private String userIdToUpdate;
+    private String profileImageUrl = "";
     private String name;
     private String email;
     private String password;
@@ -30,6 +32,16 @@ public class User {
         reference.child("Users")
                  .child(this.userID)
                  .setValue(this);
+    }
+
+    public void updateProfileImage(){
+
+        DatabaseReference imageRef = reference.child("Users").child(getUserID());
+        Map<String, Object> updateMap = new HashMap<>();
+        updateMap.put("profileImageUrl", getProfileImageUrl());
+
+        imageRef.updateChildren(updateMap);
+
     }
 
     public void updateName(){
@@ -68,13 +80,12 @@ public class User {
         this.userID = userID;
     }
 
-    @Exclude
-    public String getUserIdToUpdate() {
-        return userIdToUpdate;
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
-    public void setUserIdToUpdate(String userIdToUpdate) {
-        this.userIdToUpdate = userIdToUpdate;
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 
     public String getName() {

@@ -57,28 +57,43 @@
             android:layout_marginTop="24dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingStart="24dp"
-            android:paddingEnd="34dp">
+            android:paddingEnd="34dp"
+            android:gravity="bottom">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nome"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/grey1"/>
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvUserNameEP"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_baseline_person_grey"
-                android:drawablePadding="8dp"
-                android:hint="Nome"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey1"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUserNameEP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_baseline_person_grey"
+                    android:drawablePadding="8dp"
+                    android:hint="Nome"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnChangeNameEP"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_baseline_create_24"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -88,28 +103,44 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingStart="24dp"
-            android:paddingEnd="34dp">
+            android:paddingEnd="34dp"
+            android:gravity="bottom">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="E-mail"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/grey1"/>
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvEmailEP"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_baseline_email_24"
-                android:drawablePadding="8dp"
-                android:hint="E-mail"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="E-mail"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey1"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvEmailEP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="8dp"
+                    android:hint="E-mail"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnChangeEmailEP"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_baseline_create_24"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -119,44 +150,47 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingStart="24dp"
-            android:paddingEnd="34dp">
+            android:paddingEnd="34dp"
+            android:gravity="bottom">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Senha"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/grey1"/>
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvPassEP"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_baseline_lock_24"
-                android:drawablePadding="8dp"
-                android:hint="Senha"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                android:inputType="textPassword"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Senha"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey1"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPassEP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_baseline_lock_24"
+                    android:drawablePadding="8dp"
+                    android:hint="Senha"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:inputType="textPassword"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnChangePassEP"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_baseline_create_24"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSaveChangesEP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="@drawable/btn_save_changes"
-            android:text="Salvar Alterações"
-            android:textSize="18sp"
-            android:textColor="@color/grey1"
-            android:textAllCaps="false" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

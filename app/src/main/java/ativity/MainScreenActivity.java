@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -67,6 +69,9 @@ public class MainScreenActivity extends AppCompatActivity {
     private Double totalExpense;
     private Double totalRevenue;
     private Double valueResume;
+
+    //Utils
+    private AlertDialog dialogLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +114,20 @@ public class MainScreenActivity extends AppCompatActivity {
         moves.setAdapter(adapter);
         swipe();
 
+    }
+
+    private void configLoadingDialog(String title){
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_loading, null);
+        AppCompatTextView tvMessage = view.findViewById(R.id.tvDialogLoading);
+        tvMessage.setText(title);
+        builder.setView(view);
+
+        dialogLoading = builder.create();
+        dialogLoading.show();
     }
 
     public void swipe(){
@@ -234,6 +253,8 @@ public class MainScreenActivity extends AppCompatActivity {
 
     public void recoverResume(){
 
+        configLoadingDialog("Recuperando dados");
+
         String userEmail = auth.getCurrentUser().getEmail();
         String userID = Base64Custom.encode64Base(userEmail);
         userRef = reference.child("Users").child(userID);
@@ -255,11 +276,16 @@ public class MainScreenActivity extends AppCompatActivity {
                 tvUsername.setText(user.getName());
                 welcome.setText("Olá, " + user.getName());
                 balance.setText("R$" + formatedResult);
+
+                Picasso.get().load(user.getProfileImageUrl()).into(civProfile);
+
+                dialogLoading.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+                dialogLoading.dismiss();
             }
         });
     }
