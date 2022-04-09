@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -52,7 +53,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private CircleImageView civProfile;
     private AppCompatTextView tvUsernameMain, tvUsername, tvEmail, tvPass;
     private AppCompatButton btnChangeProfileImage;
-    private AppCompatImageButton btnChangeName, btnChangeEmail, btnChangePass;
+    private AppCompatImageButton btnChangeName, btnChangeEmail, btnChangePass, btnSignOut;
     private String userId;
 
     //Dialog Components
@@ -91,6 +92,7 @@ public class EditProfileActivity extends AppCompatActivity {
         toolbar.setTitle("Editar Perfil");
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_keyboard_arrow_left_24);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Permissions.validatePermissions(permissions, this, 1);
@@ -145,6 +147,17 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 configAlertDialog("pass");
+            }
+        });
+
+        btnSignOut = findViewById(R.id.btnSignOutEP);
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                auth.signOut();
+                finish();
+                startActivity(new Intent(EditProfileActivity.this, LoginActivity.class));
             }
         });
 

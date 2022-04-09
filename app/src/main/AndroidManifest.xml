@@ -20,11 +20,11 @@
             android:exported="false"
             android:parentActivityName="ativity.MainScreenActivity"/>
         <activity
-            android:name="ativity.ReceitasActivity"
+            android:name="ativity.RevenueActivity"
             android:exported="false"
             android:theme="@style/receitasTheme" />
         <activity
-            android:name="ativity.DespesasActivity"
+            android:name="ativity.ExpensesActivity"
             android:exported="false"
             android:theme="@style/despesasTheme" />
         <activity

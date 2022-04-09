@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +37,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapter.MovimentationAdapter;
+import Adapter.MovementsAdapter;
 import Config.FirebaseConfig;
 import Helper.Base64Custom;
 import Model.Movimentation;
@@ -54,7 +53,7 @@ public class MainScreenActivity extends AppCompatActivity {
     private TextView welcome, balance;
     private MaterialCalendarView cvMain;
     private RecyclerView moves;
-    private MovimentationAdapter adapter;
+    private MovementsAdapter adapter;
     private List<Movimentation> movimentationList = new ArrayList<>();
     private Movimentation movimentation;
     private DatabaseReference movesRef;
@@ -84,10 +83,6 @@ public class MainScreenActivity extends AppCompatActivity {
 
     private void initAndConfigComponents(){
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Organizze");
-        setSupportActionBar(toolbar);
-
         civProfile = findViewById(R.id.civProfile);
         civProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,14 +94,13 @@ public class MainScreenActivity extends AppCompatActivity {
         });
 
         tvUsername = findViewById(R.id.tvUserName);
-        welcome = findViewById(R.id.tvWelcome);
         balance = findViewById(R.id.tvBalance);
         cvMain = findViewById(R.id.cvMain);
         moves = findViewById(R.id.rvMoves);
 
         calendarViewConfigurations();
 
-        adapter = new MovimentationAdapter(movimentationList, this);
+        adapter = new MovementsAdapter(movimentationList, this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         moves.setLayoutManager(layoutManager);
@@ -206,14 +200,14 @@ public class MainScreenActivity extends AppCompatActivity {
         if(movimentation.getType().equals("R")){
 
             totalRevenue = totalRevenue - movimentation.getValue();
-            userRef.child("receitaTotal").setValue(totalRevenue);
+            userRef.child("totalRevenue").setValue(totalRevenue);
 
         }
 
         if(movimentation.getType().equals("E")){
 
             totalExpense = totalExpense - movimentation.getValue();
-            userRef.child("despesaTotal").setValue(totalExpense);
+            userRef.child("totalExpense").setValue(totalExpense);
 
         }
     }
@@ -237,7 +231,7 @@ public class MainScreenActivity extends AppCompatActivity {
                 for(DataSnapshot data: snapshot.getChildren()){
 
                     Movimentation movimentation = data.getValue(Movimentation.class);
-                    movimentation.setKey(data.getKey());
+                    //movimentation.setKey(data.getKey());
                     movimentationList.add(movimentation);
                 }
 
@@ -274,7 +268,6 @@ public class MainScreenActivity extends AppCompatActivity {
                 String formatedResult = decimalFormat.format(valueResume);
 
                 tvUsername.setText(user.getName());
-                welcome.setText("Olá, " + user.getName());
                 balance.setText("R$" + formatedResult);
 
                 Picasso.get().load(user.getProfileImageUrl()).into(civProfile);
@@ -310,14 +303,14 @@ public class MainScreenActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addDespesas(View view){
+    public void addExpenses(View view){
 
-        startActivity(new Intent(this, DespesasActivity.class));
+        startActivity(new Intent(this, ExpensesActivity.class));
     }
 
-    public void addReceitas(View view){
+    public void addRevenue(View view){
 
-        startActivity(new Intent(this, ReceitasActivity.class));
+        startActivity(new Intent(this, RevenueActivity.class));
     }
 
     public void calendarViewConfigurations(){
@@ -326,14 +319,14 @@ public class MainScreenActivity extends AppCompatActivity {
         cvMain.setTitleMonths(months);
 
         CalendarDay currentDate = cvMain.getCurrentDate();
-        String selectedMonth = String.format("%02d", currentDate.getMonth());
+        String selectedMonth = String.format("%01d", currentDate.getMonth());
         mySelected = String.valueOf( selectedMonth + "" + currentDate.getYear());
 
         cvMain.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
 
-                String selectedMonth = String.format("%02d", date.getMonth());
+                String selectedMonth = String.format("%01d", date.getMonth());
                 mySelected = String.valueOf(selectedMonth + "" + date.getYear());
 
                 movesRef.removeEventListener(valueEventListenerMoves);

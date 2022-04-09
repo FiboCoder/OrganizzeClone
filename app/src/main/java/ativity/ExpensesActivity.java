@@ -22,7 +22,7 @@ import Helper.DateUtil;
 import Model.Movimentation;
 import Model.User;
 
-public class DespesasActivity extends AppCompatActivity {
+public class ExpensesActivity extends AppCompatActivity {
 
     private TextInputEditText date, category, description;
     private EditText  value;
@@ -46,7 +46,7 @@ public class DespesasActivity extends AppCompatActivity {
         recoverTotalExpense();
     }
 
-    public void saveExpenditure(View view){
+    public void saveExpense(View view){
 
         if(validateExpenseFields()){
 
@@ -85,23 +85,23 @@ public class DespesasActivity extends AppCompatActivity {
                         return true;
                     }else{
 
-                        Toast.makeText(DespesasActivity.this, "Descrição não foi preenchida!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ExpensesActivity.this, "Descrição não foi preenchida!", Toast.LENGTH_SHORT).show();
                         return false;
                     }
                 }else{
 
-                    Toast.makeText(DespesasActivity.this, "Categoria não foi preenchida!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ExpensesActivity.this, "Categoria não foi preenchida!", Toast.LENGTH_SHORT).show();
                     return false;
                 }
 
             }else{
 
-                Toast.makeText(DespesasActivity.this, "Data não foi preenchida!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ExpensesActivity.this, "Data não foi preenchida!", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }else{
 
-            Toast.makeText(DespesasActivity.this, "Valor não foi preenchido!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ExpensesActivity.this, "Valor não foi preenchido!", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -133,6 +133,6 @@ public class DespesasActivity extends AppCompatActivity {
         String userID = Base64Custom.encode64Base(userEmail);
         DatabaseReference userRef = reference.child("Users").child(userID);
 
-        userRef.child("despesaTotal").setValue(expense);
+        userRef.child("totalExpense").setValue(expense);
     }
 }

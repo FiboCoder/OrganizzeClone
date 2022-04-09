@@ -22,7 +22,7 @@ import Helper.DateUtil;
 import Model.Movimentation;
 import Model.User;
 
-public class ReceitasActivity extends AppCompatActivity {
+public class RevenueActivity extends AppCompatActivity {
 
     private TextInputEditText date, category, description;
     private EditText value;
@@ -86,23 +86,23 @@ public class ReceitasActivity extends AppCompatActivity {
                         return true;
                     }else{
 
-                        Toast.makeText(ReceitasActivity.this, "Descrição não foi preenchida!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RevenueActivity.this, "Descrição não foi preenchida!", Toast.LENGTH_SHORT).show();
                         return false;
                     }
                 }else{
 
-                    Toast.makeText(ReceitasActivity.this, "Categoria não foi preenchida!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RevenueActivity.this, "Categoria não foi preenchida!", Toast.LENGTH_SHORT).show();
                     return false;
                 }
 
             }else{
 
-                Toast.makeText(ReceitasActivity.this, "Data não foi preenchida!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RevenueActivity.this, "Data não foi preenchida!", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }else{
 
-            Toast.makeText(ReceitasActivity.this, "Valor não foi preenchida!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RevenueActivity.this, "Valor não foi preenchida!", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -134,6 +134,6 @@ public class ReceitasActivity extends AppCompatActivity {
         String userID = Base64Custom.encode64Base(userEmail);
         DatabaseReference userRef = reference.child("Users").child(userID);
 
-        userRef.child("receitaTotal").setValue(revenue);
+        userRef.child("totalRevenue").setValue(revenue);
     }
 }
